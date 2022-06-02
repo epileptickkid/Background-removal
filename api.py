@@ -7,6 +7,13 @@ from torchvision import transforms
 import torch
 import torch.nn as nn
 import torchvision.transforms.functional as TF
+import gdown
+
+url = 'https://drive.google.com/file/d/1CER3W-czW2I8x8fIFhnhP0uNIdgr-5HA/view?usp=sharing'
+output = 'data/u_net'
+gdown.download(url, output, quiet=False)
+
+
 st.header("Удаление фона при помощи DeepLabv3 и UNET")
 st.write("Выберите изображение из набора данных Carvana, из которого вы хотите удалить фон:")
 
