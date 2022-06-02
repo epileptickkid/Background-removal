@@ -15,7 +15,7 @@ import torch.nn as nn
 import torchvision.transforms.functional as TF
 import os
 
-st.header("Удаление фона при помощи DeepLabv3")
+st.header("Удаление фона при помощи DeepLabv3 и UNET")
 st.write("Выберите изображение из набора данных Carvana, из которого вы хотите удалить фон:")
 
 uploaded_file = st.file_uploader("Выберите изображение...")
@@ -74,7 +74,8 @@ class DoubleConv(nn.Module):
 
     def forward(self, x):
         return self.conv(x)
-
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 class UNET(nn.Module):
     def init(
             self, in_channels=3, out_channels=1, features=[64, 128, 256, 512],
@@ -128,7 +129,7 @@ def model_unet(input_image):
     IMAGE_HEIGHT = 160  # 1280 изначально
     IMAGE_WIDTH = 240  # 1918 изначально
 
-    model = torch.load("data/u_net", map_location=torch.device('cpu'))
+    model = torch.load("data/u_net")
     model.eval()
 
     input_image = input_image.convert("RGB")
@@ -162,7 +163,8 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(uploaded_file, caption='Входное изображение', use_column_width=True)
     # st.write(os.listdir())
-    #im = model_deeplabv3(image)
-    #st.image(im, caption='Результат', use_column_width=True)
+    im = model_deeplabv3(image)
+    st.image(im, caption='Результат DeepLabv3', use_column_width=True)
     im = model_unet(image)
-    st.image(im, caption='Результат', use_column_width=True)
+
+    st.image(im, caption='Результат Unet', use_column_width=True)
