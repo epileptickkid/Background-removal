@@ -128,7 +128,7 @@ def model_unet(input_image):
     IMAGE_HEIGHT = 160  # 1280 изначально
     IMAGE_WIDTH = 240  # 1918 изначально
 
-    model = torch.load("data/u_net")
+    model = torch.load("data/u_net" , map_location=torch.device('cpu'))
     model.eval()
 
     input_image = input_image.convert("RGB")
