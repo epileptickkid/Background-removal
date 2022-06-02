@@ -1,20 +1,12 @@
 
 import streamlit as st
-import torch
-from torchvision import transforms
 import matplotlib.pyplot as plt
-from numpy import load
-from numpy import expand_dims
-from matplotlib import pyplot
-from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 from PIL import Image
 from torchvision import transforms
 import torch
 import torch.nn as nn
 import torchvision.transforms.functional as TF
-import os
-
 st.header("Удаление фона при помощи DeepLabv3 и UNET")
 st.write("Выберите изображение из набора данных Carvana, из которого вы хотите удалить фон:")
 
