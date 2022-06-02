@@ -9,7 +9,7 @@ import torch.nn as nn
 import torchvision.transforms.functional as TF
 import gdown
 
-url = 'https://drive.google.com/file/d/1CER3W-czW2I8x8fIFhnhP0uNIdgr-5HA/view?usp=sharing'
+url = 'https://drive.google.com/file/d/1CER3W-czW2I8x8fIFhnhP0uNIdgr-5HA'
 output = 'data/u_net'
 gdown.download(url, output, quiet=False)
 
